@@ -7,6 +7,11 @@ namespace IdleCarService.UI
         [SerializeField] private MainMenuUI _menuUI;
         [SerializeField] private GamePlayUI _gamePlayUI;
 
+        public void Init()
+        {
+            _gamePlayUI.Init();
+        }
+
         public void SetMenuUI()
         {
             _gamePlayUI.Disable();

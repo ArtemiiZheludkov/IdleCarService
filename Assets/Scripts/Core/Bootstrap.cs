@@ -12,19 +12,7 @@ namespace IdleCarService.Core
 
         private void InitializeGame()
         {
-            LoadGameData();
-            InitializeCoreSystems();
             SceneManager.LoadSceneAsync("GamePlay");
-        }
-
-        private void LoadGameData()
-        {
-            Debug.Log("Loading game data...");
-        }
-
-        private void InitializeCoreSystems()
-        {
-            Debug.Log("Initializing core systems...");
         }
     }
 

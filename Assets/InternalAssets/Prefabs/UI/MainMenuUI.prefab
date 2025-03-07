@@ -90,8 +90,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ed54e2ffae54cf181a5ab32f3bf5b89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playButton: {fileID: 2937610428270201350}
-  exitButton: {fileID: 884177319390551694}
+  _playButton: {fileID: 2937610428270201350}
+  _exitButton: {fileID: 884177319390551694}
 --- !u!1 &719618703829981418
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 8737718837977534263}
   - component: {fileID: 6626119450393160196}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -234,7 +234,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2047613651344142497, guid: e869268efd7d38745a52967381cef55f, type: 3}
+  m_Sprite: {fileID: -7090641179508505894, guid: a92c5df7eef6ddc4ba91ad5dd2892af9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

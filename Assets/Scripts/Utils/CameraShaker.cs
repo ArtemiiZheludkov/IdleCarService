@@ -4,8 +4,8 @@ namespace IdleCarService.Utils
 {
     public class CameraShaker : MonoBehaviour
     {
-        public float shakeAmount = 0.1f;
-        public float shakeFrequency = 1f;
+        [SerializeField] private float _shakeAmount = 0.1f;
+        [SerializeField] private float _shakeFrequency = 1f;
 
         private Vector3 originalPosition;
 
@@ -17,8 +17,8 @@ namespace IdleCarService.Utils
 
         private void Update()
         {
-            float shakeX = Mathf.PerlinNoise(Time.time * shakeFrequency, 0f) * shakeAmount - (shakeAmount / 2);
-            float shakeY = Mathf.PerlinNoise(0f, Time.time * shakeFrequency) * shakeAmount - (shakeAmount / 2);
+            float shakeX = Mathf.PerlinNoise(Time.time * _shakeFrequency, 0f) * _shakeAmount - (_shakeAmount / 2);
+            float shakeY = Mathf.PerlinNoise(0f, Time.time * _shakeFrequency) * _shakeAmount - (_shakeAmount / 2);
 
             transform.position = originalPosition + new Vector3(shakeX, shakeY, 0f);
         }

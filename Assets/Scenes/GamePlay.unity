@@ -1082,6 +1082,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainMenuUI
       objectReference: {fileID: 0}
+    - target: {fileID: 584992609822960178, guid: 58b2b5fcec7fa1042860df96c72f6f5a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 789571675265110196, guid: 58b2b5fcec7fa1042860df96c72f6f5a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4898,8 +4902,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 958f57b82bec4e929aa8119c64155b8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shakeAmount: 0.1
-  shakeFrequency: 1
+  _shakeAmount: 0.1
+  _shakeFrequency: 1
 --- !u!1001 &983684757
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11345,6 +11349,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: GamePlayUI
       objectReference: {fileID: 0}
+    - target: {fileID: 4763267537615365955, guid: 7665a77e35f3a7c4982b0c08be4a30f3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5690155680644009182, guid: 7665a77e35f3a7c4982b0c08be4a30f3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5847178823316984067, guid: 7665a77e35f3a7c4982b0c08be4a30f3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7139515733364421029, guid: 7665a77e35f3a7c4982b0c08be4a30f3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8755590899348684960, guid: 7665a77e35f3a7c4982b0c08be4a30f3, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -11423,6 +11443,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8755590899348684960, guid: 7665a77e35f3a7c4982b0c08be4a30f3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8996887662737310104, guid: 7665a77e35f3a7c4982b0c08be4a30f3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8996887662737310104, guid: 7665a77e35f3a7c4982b0c08be4a30f3, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
