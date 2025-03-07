@@ -9,15 +9,25 @@ namespace IdleCarService.UI
         [SerializeField] private Button playButton;
         [SerializeField] private Button exitButton;
 
-        private void Awake()
+        private void OnEnable()
         {
             playButton.onClick.AddListener(OnPlayClicked);
             exitButton.onClick.AddListener(OnExitClicked);
         }
+        
+        private void OnDisable()
+        {
+            playButton.onClick.RemoveListener(OnPlayClicked);
+            exitButton.onClick.RemoveListener(OnExitClicked);
+        }
+        
+        public void Enable() => gameObject.SetActive(true);
+
+        public void Disable() => gameObject.SetActive(false);
 
         private void OnPlayClicked()
         {
-            SceneLoader.LoadSceneAsync(SceneLoader.Scene.GamePlay);
+            GameManager.Instance.SetGamePlayState();
         }
 
         private void OnExitClicked()

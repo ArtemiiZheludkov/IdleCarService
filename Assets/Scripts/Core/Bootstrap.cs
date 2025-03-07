@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace IdleCarService.Core
 {
@@ -13,7 +14,7 @@ namespace IdleCarService.Core
         {
             LoadGameData();
             InitializeCoreSystems();
-            SceneLoader.LoadSceneAsync(SceneLoader.Scene.MainMenu);
+            SceneManager.LoadSceneAsync("GamePlay");
         }
 
         private void LoadGameData()
