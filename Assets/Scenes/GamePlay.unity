@@ -1084,7 +1084,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 584992609822960178, guid: 58b2b5fcec7fa1042860df96c72f6f5a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 789571675265110196, guid: 58b2b5fcec7fa1042860df96c72f6f5a, type: 3}
       propertyPath: m_Pivot.x
@@ -4432,6 +4432,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cameraShaker: {fileID: 963194229}
   _uiManager: {fileID: 937421317}
+  _startInventoryQuantity: 0
   _itemConfigs:
   - {fileID: 11400000, guid: 08c34a6eb15c1f145a26cebea3395f66, type: 2}
   - {fileID: 11400000, guid: cb4c634bf4e7b504e877fa3117b90a4b, type: 2}

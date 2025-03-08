@@ -19,6 +19,7 @@ namespace IdleCarService.Core
 
         [SerializeField] private CameraShaker _cameraShaker;
         [SerializeField] private UIManager _uiManager;
+        [SerializeField] private int _startInventoryQuantity;
         
         [SerializeField] private List<ItemConfig> _itemConfigs;
 
@@ -37,7 +38,7 @@ namespace IdleCarService.Core
         {
             LevelController = new LevelController();
             MoneyBank = new MoneyBank();
-            InventoryManager = new InventoryManager(_itemConfigs);
+            InventoryManager = new InventoryManager(_itemConfigs, _startInventoryQuantity);
             CraftManager = new CraftManager(InventoryManager);
             
             _uiManager.Init();

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using IdleCarService.Inventory;
+using Unity.VisualScripting;
 
 namespace IdleCarService.Craft
 {
@@ -43,6 +44,9 @@ namespace IdleCarService.Craft
 
         public bool CanCraftItem(int itemId)
         {
+            if (_inventoryManager.CurrentItemQuantity >= _inventoryManager.MaxItemQuantity)
+                return false;
+            
             ItemConfig itemConfig = _inventoryManager.GetItemConfig(itemId);
             
             if (itemConfig == null || itemConfig.IsCraftable == false)

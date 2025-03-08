@@ -23,6 +23,7 @@ namespace IdleCarService.UI.GamePlay
             
             _craftButton.onClick.AddListener(OnCraftClicked);
             _inventory.OnItemQuantityChanged += OnItemQuantityChanged;
+            _inventory.OnInventoryHasQuantity += OnInventoryHasQuantity;
         }
 
         private void OnDisable()
@@ -31,6 +32,7 @@ namespace IdleCarService.UI.GamePlay
             
             _craftButton.onClick.RemoveListener(OnCraftClicked);
             _inventory.OnItemQuantityChanged -= OnItemQuantityChanged;
+            _inventory.OnInventoryHasQuantity -= OnInventoryHasQuantity;
         }
 
         public void Init(ItemConfig config, CraftManager crafter, InventoryManager inventory)
@@ -66,6 +68,11 @@ namespace IdleCarService.UI.GamePlay
                     return;
                 }
             }
+        }
+
+        private void OnInventoryHasQuantity(bool hasQuantity)
+        {
+            UpdateCraftButton();
         }
 
         private void OnCraftClicked()

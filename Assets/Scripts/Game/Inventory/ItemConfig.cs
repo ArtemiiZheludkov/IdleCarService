@@ -9,7 +9,7 @@ namespace IdleCarService.Inventory
         public Sprite Icon;
         
         public int UnlockLevel;
-        public int FactoryPrice;
+        public int SellPrice;
         
         public bool IsCraftable = false;
         public ItemConfig[] CraftingIngredients;

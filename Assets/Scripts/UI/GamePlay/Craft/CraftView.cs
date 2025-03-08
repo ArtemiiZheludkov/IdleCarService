@@ -11,12 +11,14 @@ namespace IdleCarService.UI.GamePlay
         [SerializeField] private CraftItemView _prefabItemView;
         
         private CraftManager _craft;
+        private InventoryManager _inventory;
         private Dictionary<int, CraftItemView> _itemViews;
         
-        public void Init(CraftManager craftManager, InventoryManager inventoryManager, LevelController levelController)
+        public void Init(CraftManager craftManager, InventoryManager inventory, LevelController levelController)
         {
             _craft = craftManager;
-            base.Init(inventoryManager, levelController);
+            _inventory = inventory;
+            base.Init(levelController);
         }
 
         protected override void CreateViews()
@@ -24,7 +26,7 @@ namespace IdleCarService.UI.GamePlay
             if (_itemViews == null)
                 _itemViews = new Dictionary<int, CraftItemView>();
 
-            List<ItemConfig> unlockedConfigs = GetUnlockedItems();
+            List<ItemConfig> unlockedConfigs = _craft.GetUnlockedCraftableItems();
 
             foreach (ItemConfig config in unlockedConfigs)
             {
@@ -38,11 +40,6 @@ namespace IdleCarService.UI.GamePlay
             CraftItemView itemView = Instantiate(_prefabItemView, _contentParent);
             itemView.Init(config, _craft, _inventory);
             _itemViews.Add(config.Id, itemView);
-        }
-        
-        protected override List<ItemConfig> GetUnlockedItems()
-        {
-            return _craft.GetUnlockedCraftableItems();
         }
     }
 }

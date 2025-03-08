@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using IdleCarService.Inventory;
+﻿using IdleCarService.Inventory;
 using IdleCarService.Progression;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,16 +10,11 @@ namespace IdleCarService.UI.GamePlay
         [SerializeField] protected Transform _contentParent;
         [SerializeField] protected Button _closeButton;
         
-        protected InventoryManager _inventory;
-        
         protected abstract void CreateViews();
         protected abstract void CreateItemView(ItemConfig config);
-        protected abstract List<ItemConfig> GetUnlockedItems();
 
-        public virtual void Init(InventoryManager inventoryManager, LevelController levelController)
+        public virtual void Init(LevelController levelController)
         {
-            _inventory = inventoryManager;
-            
             CreateViews();
             
             levelController.LevelChanged += OnLevelChanged;
