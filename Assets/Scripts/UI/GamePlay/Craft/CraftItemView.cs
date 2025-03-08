@@ -22,7 +22,6 @@ namespace IdleCarService.UI.GamePlay
             UpdateCraftButton();
             
             _craftButton.onClick.AddListener(OnCraftClicked);
-            
             _inventory.OnItemQuantityChanged += OnItemQuantityChanged;
         }
 
@@ -31,7 +30,6 @@ namespace IdleCarService.UI.GamePlay
             UpdateCraftButton();
             
             _craftButton.onClick.RemoveListener(OnCraftClicked);
-            
             _inventory.OnItemQuantityChanged -= OnItemQuantityChanged;
         }
 

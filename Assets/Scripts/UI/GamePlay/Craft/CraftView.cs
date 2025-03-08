@@ -3,49 +3,28 @@ using IdleCarService.Craft;
 using IdleCarService.Inventory;
 using IdleCarService.Progression;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace IdleCarService.UI.GamePlay
 {
-    public class CraftView : MonoBehaviour
+    public class CraftView : BaseItemView
     {
         [SerializeField] private CraftItemView _prefabItemView;
-        [SerializeField] private Transform _contentParent;
-        [SerializeField] private Button _closeButton;
         
         private CraftManager _craft;
-        private InventoryManager _inventory;
-        
         private Dictionary<int, CraftItemView> _itemViews;
         
         public void Init(CraftManager craftManager, InventoryManager inventoryManager, LevelController levelController)
         {
             _craft = craftManager;
-            _inventory = inventoryManager;
-            
-            CreateViews();
-            
-            levelController.LevelChanged += OnLevelChanged;
+            base.Init(inventoryManager, levelController);
         }
 
-        public void Enable()
-        {
-            gameObject.SetActive(true);
-            _closeButton.onClick.AddListener(Disable);
-        }
-
-        public void Disable()
-        {
-            gameObject.SetActive(false);
-            _closeButton.onClick.RemoveListener(Disable);
-        }
-
-        private void CreateViews()
+        protected override void CreateViews()
         {
             if (_itemViews == null)
                 _itemViews = new Dictionary<int, CraftItemView>();
 
-            List<ItemConfig> unlockedConfigs = _craft.GetUnlockedCraftableItems();
+            List<ItemConfig> unlockedConfigs = GetUnlockedItems();
 
             foreach (ItemConfig config in unlockedConfigs)
             {
@@ -54,13 +33,16 @@ namespace IdleCarService.UI.GamePlay
             }
         }
 
-        private void CreateItemView(ItemConfig config)
+        protected override void CreateItemView(ItemConfig config)
         {
             CraftItemView itemView = Instantiate(_prefabItemView, _contentParent);
             itemView.Init(config, _craft, _inventory);
             _itemViews.Add(config.Id, itemView);
         }
-
-        private void OnLevelChanged(int level) => CreateViews();
+        
+        protected override List<ItemConfig> GetUnlockedItems()
+        {
+            return _craft.GetUnlockedCraftableItems();
+        }
     }
 }
