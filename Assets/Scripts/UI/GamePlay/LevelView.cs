@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace IdleCarService.UI
+namespace IdleCarService.UI.GamePlay
 {
     public class LevelView : MonoBehaviour
     {

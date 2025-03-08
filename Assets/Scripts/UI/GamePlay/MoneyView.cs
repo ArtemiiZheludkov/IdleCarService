@@ -2,7 +2,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace IdleCarService.UI
+namespace IdleCarService.UI.GamePlay
 {
     public class MoneyView : MonoBehaviour
     {

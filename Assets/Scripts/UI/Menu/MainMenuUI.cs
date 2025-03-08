@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace IdleCarService.UI
+namespace IdleCarService.UI.MainMenu
 {
     public class MainMenuUI : MonoBehaviour
     {
