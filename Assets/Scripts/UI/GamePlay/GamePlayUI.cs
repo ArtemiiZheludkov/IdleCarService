@@ -1,4 +1,8 @@
-﻿using IdleCarService.Core;
+﻿using System;
+using IdleCarService.Build;
+using IdleCarService.Craft;
+using IdleCarService.Inventory;
+using IdleCarService.Progression;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +13,7 @@ namespace IdleCarService.UI.GamePlay
         [Header("VIEWS")]
         [SerializeField] private LevelView _levelView;
         [SerializeField] private MoneyView _moneyView;
+        [SerializeField] private BuildView _buildView;
         [SerializeField] private InventoryView _inventoryView;
         [SerializeField] private CraftView _craftView;
         
@@ -18,20 +23,25 @@ namespace IdleCarService.UI.GamePlay
         [SerializeField] private Button _inventoryButton;
         [SerializeField] private Button _craftButton;
 
-        public void Init()
+        private Action _setMenuState;
+
+        public void Init(LevelController level, MoneyBank bank, BuildingManager builder, 
+            InventoryManager inventory, CraftManager crafter, Action setMenuState)
         {
-            GameManager instance = GameManager.Instance;
+            _setMenuState = setMenuState;
             
-            _levelView.Init(instance.LevelController);
-            _moneyView.Init(instance.MoneyBank);
-            _inventoryView.Init(instance.InventoryManager, instance.LevelController);
-            _craftView.Init(instance.CraftManager, instance.InventoryManager, instance.LevelController);
+            _levelView.Init(level);
+            _moneyView.Init(bank);
+            _buildView.Init(builder, bank, level);
+            _inventoryView.Init(inventory, level);
+            _craftView.Init(crafter, inventory, level);
         }
 
         public void Enable()
         {
             _levelView.Enable();
             _moneyView.Enable();
+            _buildView.Disable();
             _inventoryView.Disable();
             _craftView.Disable();
             
@@ -47,6 +57,7 @@ namespace IdleCarService.UI.GamePlay
         {
             _levelView.Disable();
             _moneyView.Disable();
+            _buildView.Disable();
             _inventoryView.Disable();
             _craftView.Disable();
             
@@ -58,8 +69,8 @@ namespace IdleCarService.UI.GamePlay
             _craftButton.onClick.RemoveListener(OnBuildClicked);
         }
 
-        private void OnMenuClicked() => GameManager.Instance.SetMenuState();
-        private void OnBuildClicked() => GameManager.Instance.SetMenuState();
+        private void OnMenuClicked() => _setMenuState?.Invoke();
+        private void OnBuildClicked() => _buildView.Enable();
         private void OnInventoryClicked() => _inventoryView.Enable();
         private void OnCraftClicked() => _craftView.Enable();
     }

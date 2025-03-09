@@ -1,17 +1,15 @@
-﻿using IdleCarService.Inventory;
-using IdleCarService.Progression;
+﻿using IdleCarService.Progression;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace IdleCarService.UI.GamePlay
 {
-    public abstract class BaseItemView : MonoBehaviour
+    public abstract class BaseListView : MonoBehaviour
     {
         [SerializeField] protected Transform _contentParent;
         [SerializeField] protected Button _closeButton;
         
         protected abstract void CreateViews();
-        protected abstract void CreateItemView(ItemConfig config);
 
         public virtual void Init(LevelController levelController)
         {
@@ -20,13 +18,13 @@ namespace IdleCarService.UI.GamePlay
             levelController.LevelChanged += OnLevelChanged;
         }
 
-        public void Enable()
+        public virtual void Enable()
         {
             gameObject.SetActive(true);
             _closeButton.onClick.AddListener(Disable);
         }
 
-        public void Disable()
+        public virtual void Disable()
         {
             gameObject.SetActive(false);
             _closeButton.onClick.RemoveListener(Disable);

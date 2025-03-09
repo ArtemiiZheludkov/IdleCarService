@@ -1,13 +1,16 @@
 ﻿using IdleCarService.Inventory;
 using IdleCarService.Progression;
+using UnityEngine;
 
 namespace IdleCarService.Build
 {
     public class Factory : WorkBuilding
     {
+        [SerializeField] private Sprite _moneyIcon;
+        
         private InventoryManager _inventory;
         private MoneyBank _bank;
-        private int _itemId, _itemPrice, _jobTime;
+        private int _itemId, _itemPrice, _createTime;
         
         private bool _needAddItemToInventory;
         
@@ -19,7 +22,7 @@ namespace IdleCarService.Build
             _bank = bank;
             _itemId = config.FactoryItem.Id;
             _itemPrice = config.FactoryPrice;
-            _jobTime = config.JobTime;
+            _createTime = config.JobTime;
 
             _needAddItemToInventory = false;
         }
@@ -57,11 +60,17 @@ namespace IdleCarService.Build
             _bank.MoneyChanged -= OnMoneyChanged;
             
             if (_bank.TrySpendMoney(_itemPrice))
-                SetJob(_jobTime);
+            {
+                SetJob(_createTime);
+                HideInfoIcon();
+            }
             else
+            {
+                ShowInfoIcon(_moneyIcon);
                 _bank.MoneyChanged += OnMoneyChanged;
+            }
         }
-
+        
         private void OnMoneyChanged(int money)
         {
             if (HasJob)

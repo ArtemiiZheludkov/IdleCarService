@@ -1,4 +1,5 @@
-﻿using IdleCarService.UI.GamePlay;
+﻿using IdleCarService.Core;
+using IdleCarService.UI.GamePlay;
 using IdleCarService.UI.MainMenu;
 using UnityEngine;
 
@@ -9,9 +10,12 @@ namespace IdleCarService.UI
         [SerializeField] private MainMenuUI _menuUI;
         [SerializeField] private GamePlayUI _gamePlayUI;
 
-        public void Init()
+        public void Init(GameManager gameManager)
         {
-            _gamePlayUI.Init();
+            _menuUI.Init(gameManager.SetGamePlayState, gameManager.CloseGame);
+            
+            _gamePlayUI.Init(gameManager.LevelController, gameManager.MoneyBank, gameManager.BuildingManager, 
+                gameManager.InventoryManager, gameManager.CraftManager, gameManager.SetMenuState);
         }
 
         public void SetMenuUI()

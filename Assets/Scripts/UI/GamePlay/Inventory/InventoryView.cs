@@ -1,13 +1,15 @@
 ﻿using System.Collections.Generic;
 using IdleCarService.Inventory;
 using IdleCarService.Progression;
+using TMPro;
 using UnityEngine;
 
 namespace IdleCarService.UI.GamePlay
 {
-    public class InventoryView : BaseItemView
+    public class InventoryView : BaseListView
     {
         [SerializeField] private ItemView _prefabItemView;
+        [SerializeField] private TMP_Text _inventoryTxt;
         
         private InventoryManager _inventory;
         private Dictionary<int, ItemView> _itemViews;
@@ -16,6 +18,19 @@ namespace IdleCarService.UI.GamePlay
         {
             _inventory = inventory;
             base.Init(levelController);
+        }
+
+        public override void Enable()
+        {
+            base.Enable();
+            UpdateQuantityText();
+            _inventory.OnInventoryHasQuantity += OnInventoryQuantityChanged;
+        }
+
+        public override void Disable()
+        {
+            base.Disable();
+            _inventory.OnInventoryHasQuantity -= OnInventoryQuantityChanged;
         }
 
         protected override void CreateViews()
@@ -32,11 +47,15 @@ namespace IdleCarService.UI.GamePlay
             }
         }
 
-        protected override void CreateItemView(ItemConfig config)
+        private void CreateItemView(ItemConfig config)
         {
             ItemView itemView = Instantiate(_prefabItemView, _contentParent);
             itemView.Init(config, _inventory);
             _itemViews.Add(config.Id, itemView);
         }
+        
+        private void UpdateQuantityText() => _inventoryTxt.text = $"{_inventory.CurrentItemQuantity} / {_inventory.MaxItemQuantity}";
+
+        private void OnInventoryQuantityChanged(bool hasQuantity) => UpdateQuantityText();
     }
 }

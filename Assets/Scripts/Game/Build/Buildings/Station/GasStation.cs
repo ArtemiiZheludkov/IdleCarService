@@ -28,6 +28,14 @@ namespace IdleCarService.Build
             Bank.AddMoney(_gasConfig.SellPrice);
         }
 
+        protected override void UpdateInfoView()
+        {
+            if (CanCompleteService())
+                ShowInfoIcon(_gasConfig.Icon);
+            else
+                HideInfoIcon();
+        }
+
         protected override void OnItemQuantityChanged(int id, int quantity)
         {
             if (_gasConfig.Id == id && NeedItems)

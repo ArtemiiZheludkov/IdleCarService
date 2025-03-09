@@ -1,4 +1,4 @@
-﻿using IdleCarService.Core;
+﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +8,16 @@ namespace IdleCarService.UI.MainMenu
     {
         [SerializeField] private Button _playButton;
         [SerializeField] private Button _exitButton;
+
+        private Action _setGamePlayState;
+        private Action _closeGame;
         
+        public void Init(Action setGamePlayState, Action closeGame)
+        {
+            _setGamePlayState = setGamePlayState;
+            _closeGame = closeGame;
+        }
+
         public void Enable()
         {
             gameObject.SetActive(true);
@@ -25,16 +34,9 @@ namespace IdleCarService.UI.MainMenu
             _exitButton.onClick.RemoveListener(OnExitClicked);
         }
 
-        private void OnPlayClicked() => GameManager.Instance.SetGamePlayState();
+        private void OnPlayClicked() => _setGamePlayState?.Invoke();
 
-        private void OnExitClicked()
-        {
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#else
-            Application.Quit();
-#endif
-        }
+        private void OnExitClicked() => _closeGame?.Invoke();
     }
 
 }

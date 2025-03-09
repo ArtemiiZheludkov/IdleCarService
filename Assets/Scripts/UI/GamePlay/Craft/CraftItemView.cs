@@ -70,15 +70,8 @@ namespace IdleCarService.UI.GamePlay
             }
         }
 
-        private void OnInventoryHasQuantity(bool hasQuantity)
-        {
-            UpdateCraftButton();
-        }
+        private void OnInventoryHasQuantity(bool hasQuantity) => UpdateCraftButton();
 
-        private void OnCraftClicked()
-        {
-            _crafter?.TryCraftItem(_config.Id);
-            UpdateCraftButton();
-        }
+        private void OnCraftClicked() => _crafter?.TryCraftItem(_config.Id);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using IdleCarService.Core;
+using IdleCarService.Progression;
 
 namespace IdleCarService.Inventory
 {
@@ -12,13 +13,15 @@ namespace IdleCarService.Inventory
         public int CurrentItemQuantity { get; private set; }
         public int MaxItemQuantity { get; private set; }
 
+        private LevelController _level;
         private List<ItemConfig> _availableItems;
         private Dictionary<int, int> _items;
 
-        public InventoryManager(List<ItemConfig> availableItems, int maxItemQuantity)
+        public InventoryManager(List<ItemConfig> availableItems, int maxItemQuantity, LevelController level)
         {
             _availableItems = availableItems;
             MaxItemQuantity = maxItemQuantity;
+            _level = level;
 
             CurrentItemQuantity = 0;
             _items = new Dictionary<int, int>();
@@ -91,7 +94,7 @@ namespace IdleCarService.Inventory
 
         public List<ItemConfig> GetUnlockedItems()
         {
-            int playerLevel = GameManager.Instance.LevelController.CurrentLevel;
+            int playerLevel = _level.CurrentLevel;
 
             List<ItemConfig> unlockedItems = new List<ItemConfig>();
 

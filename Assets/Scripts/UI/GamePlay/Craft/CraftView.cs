@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace IdleCarService.UI.GamePlay
 {
-    public class CraftView : BaseItemView
+    public class CraftView : BaseListView
     {
         [SerializeField] private CraftItemView _prefabItemView;
         
@@ -35,7 +35,7 @@ namespace IdleCarService.UI.GamePlay
             }
         }
 
-        protected override void CreateItemView(ItemConfig config)
+        private void CreateItemView(ItemConfig config)
         {
             CraftItemView itemView = Instantiate(_prefabItemView, _contentParent);
             itemView.Init(config, _craft, _inventory);

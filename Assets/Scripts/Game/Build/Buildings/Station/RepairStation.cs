@@ -48,6 +48,23 @@ namespace IdleCarService.Build
             
             Bank.AddMoney(_totalSellPrice);
         }
+        
+        protected override void UpdateInfoView()
+        {
+            HideInfoIcon();
+            
+            if (_detailIds == null)
+                return;
+
+            foreach (int itemId in _detailIds)
+            {
+                if (Inventory.HasItem(itemId) == false)
+                {
+                    ShowInfoIcon(Inventory.GetItemConfig(itemId).Icon);
+                    return;
+                }
+            }
+        }
 
         protected override void OnItemQuantityChanged(int id, int quantity)
         {

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using IdleCarService.Build;
 using IdleCarService.Craft;
 using IdleCarService.Inventory;
 using IdleCarService.Progression;
@@ -14,14 +14,13 @@ namespace IdleCarService.Core
         
         public LevelController LevelController { get; private set; }
         public MoneyBank MoneyBank { get; private set; }
+        public BuildingManager BuildingManager { get; private set; }
         public InventoryManager InventoryManager { get; private set; }
         public CraftManager CraftManager { get; private set; }
 
+        [SerializeField] private GameConfig _config;
         [SerializeField] private CameraShaker _cameraShaker;
         [SerializeField] private UIManager _uiManager;
-        [SerializeField] private int _startInventoryQuantity;
-        
-        [SerializeField] private List<ItemConfig> _itemConfigs;
 
         private void Awake()
         {
@@ -37,11 +36,12 @@ namespace IdleCarService.Core
         private void Init()
         {
             LevelController = new LevelController();
-            MoneyBank = new MoneyBank();
-            InventoryManager = new InventoryManager(_itemConfigs, _startInventoryQuantity);
+            MoneyBank = new MoneyBank(_config.StartMoney);
+            BuildingManager = new BuildingManager(_config.BuildingConfigs, LevelController, MoneyBank);
+            InventoryManager = new InventoryManager(_config.ItemConfigs, _config.StartInventoryQuantity, LevelController);
             CraftManager = new CraftManager(InventoryManager);
             
-            _uiManager.Init();
+            _uiManager.Init(Instance);
         }
 
         public void SetMenuState()
@@ -54,6 +54,15 @@ namespace IdleCarService.Core
         {
             _uiManager.SetGamePlayUI();
             _cameraShaker.StopShaking();
+        }
+
+        public void CloseGame()
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
         }
     }
 }

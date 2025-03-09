@@ -2,10 +2,10 @@
 
 namespace IdleCarService.Build
 {
-    [CreateAssetMenu(fileName = "NewBuilding", menuName = "Configs/Building")]
+    [CreateAssetMenu(fileName = "NewStation", menuName = "Configs/Station")]
     public class StationConfig : BuildingConfig
     {
-        public WorkBuilding Prefab;
+        public ServiceStation Prefab;
         public int JobTime;
     }
 }

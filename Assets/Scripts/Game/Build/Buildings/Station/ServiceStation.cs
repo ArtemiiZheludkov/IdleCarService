@@ -56,6 +56,7 @@ namespace IdleCarService.Build
         
         protected abstract bool CanCompleteService();
         protected abstract void ProcessItems();
+        protected abstract void UpdateInfoView();
         
         protected void TryCreateJob()
         {
@@ -68,10 +69,13 @@ namespace IdleCarService.Build
             {
                 ProcessItems();
                 SetJob(JobTime);
+                ShowTimerView();
             }
             else
             {
                 SetJob(JobTime);
+                HideTimerView();
+                UpdateInfoView();
                 WaitCount += 1;
                 Inventory.OnItemQuantityChanged += OnItemQuantityChanged;
             }
