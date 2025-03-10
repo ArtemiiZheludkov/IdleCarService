@@ -8,6 +8,7 @@ namespace IdleCarService.Build
     public class Factory : WorkBuilding
     {
         [SerializeField] private Sprite _moneySprite;
+        [SerializeField] private Sprite _inventorySprite;
         [SerializeField] private Image _itemIcon;
         
         private InventoryManager _inventory;
@@ -35,9 +36,14 @@ namespace IdleCarService.Build
             _needAddItemToInventory = !_inventory.AddItem(_itemId);
 
             if (_needAddItemToInventory)
+            {
+                ShowInfoIcon(_inventorySprite);
                 _inventory.OnInventoryHasQuantity += OnInventoryQuantityChanged;
+            }
             else
+            {
                 TryCreateJob();
+            }
         }
 
         public override void StartWork()
@@ -65,10 +71,12 @@ namespace IdleCarService.Build
             if (_bank.TrySpendMoney(_itemPrice))
             {
                 SetJob(_createTime);
+                ShowTimerView();
                 HideInfoIcon();
             }
             else
             {
+                HideTimerView();
                 ShowInfoIcon(_moneySprite);
                 _bank.MoneyChanged += OnMoneyChanged;
             }
@@ -87,10 +95,12 @@ namespace IdleCarService.Build
             if (hasQuantity == false)
                 return;
             
-            if (_inventory.AddItem(_itemId))
+            _inventory.OnInventoryHasQuantity -= OnInventoryQuantityChanged;
+            _needAddItemToInventory = !_inventory.AddItem(_itemId);
+            
+            if (_needAddItemToInventory == false)
             {
-                _needAddItemToInventory = false;
-                _inventory.OnInventoryHasQuantity -= OnInventoryQuantityChanged;
+                HideInfoIcon();
                 TryCreateJob();
             }
         }

@@ -8,12 +8,12 @@ namespace IdleCarService.Build
     {
         [SerializeField] private ItemConfig _gasConfig;
         
-        public void CreateServiceForClient(Action onCompleted)
+        public override void CreateServiceForClient(Action onCompleted)
         {
-            OnJobCompletedCallback = onCompleted;
+            base.CreateServiceForClient(onCompleted);
+            
             NeedItems = true;
             WaitCount = 0;
-            
             TryCreateJob();
         }
 
@@ -31,9 +31,9 @@ namespace IdleCarService.Build
         protected override void UpdateInfoView()
         {
             if (CanCompleteService())
-                ShowInfoIcon(_gasConfig.Icon);
-            else
                 HideInfoIcon();
+            else 
+                ShowInfoIcon(_gasConfig.Icon);
         }
 
         protected override void OnItemQuantityChanged(int id, int quantity)

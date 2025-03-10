@@ -65,16 +65,12 @@ namespace IdleCarService.Build
 
         private void UpdateJobStatus()
         {
-            if (HasJob)
-                return;
-            
             _jobTime += Time.fixedDeltaTime;
 
             if (_jobTime >= _jobDuration)
             {
                 HasJob = false;
-                _jobIcon.enabled = false;
-                
+                HideTimerView();
                 JobCompleted();
             }
             else

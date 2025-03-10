@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using IdleCarService.Core;
 using IdleCarService.Inventory;
 using IdleCarService.Progression;
 
@@ -12,6 +13,7 @@ namespace IdleCarService.Build
         
         private Builder _builder;
         private Dictionary<int, BuildingConfig> _buildingConfigs;
+        private List<Building> _buildingsCreated;
 
         public BuildingManager(List<BuildingConfig> buildings, BuildingZoneManager zoneManager, 
             LevelController level, MoneyBank bank, InventoryManager inventory)
@@ -23,11 +25,30 @@ namespace IdleCarService.Build
             zoneManager.Init();
             _builder = new Builder(zoneManager, bank, inventory);
             _buildingConfigs = new Dictionary<int, BuildingConfig>();
+            _buildingsCreated = new List<Building>();
             
             foreach (BuildingConfig config in buildings)
                 _buildingConfigs.Add(config.Id, config);
             
             level.LevelChanged += OnLevelChanged;
+        }
+
+        public void SetMenuState()
+        {
+            foreach (Building building in _buildingsCreated)
+            {
+                if (building is WorkBuilding workBuilding)
+                    workBuilding.StopWork();
+            }
+        }
+
+        public void SetGamePlayState()
+        {
+            foreach (Building building in _buildingsCreated)
+            {
+                if (building is WorkBuilding workBuilding)
+                    workBuilding.StartWork();
+            }
         }
 
         public bool CanBuild(int buildId)
@@ -55,9 +76,11 @@ namespace IdleCarService.Build
             if (_buildingConfigs.TryGetValue(buildId, out BuildingConfig config) == false)
                 return false;
 
-            if (_builder.TryBuild(config))
+            if (_builder.TryBuild(config, out Building building))
             {
                 _bank.TrySpendMoney(config.BuildPrice);
+                _buildingsCreated.Add(building);
+                
                 return true;
             }
             

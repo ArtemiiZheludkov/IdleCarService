@@ -20,4 +20,4 @@ MonoBehaviour:
   Prefab: {fileID: 2143096869053689069, guid: ee3a50cd7a8fea9479254c694a191b2e, type: 3}
   FactoryItem: {fileID: 11400000, guid: 08c34a6eb15c1f145a26cebea3395f66, type: 2}
   FactoryPrice: 10
-  JobTime: 5
+  JobTime: 2

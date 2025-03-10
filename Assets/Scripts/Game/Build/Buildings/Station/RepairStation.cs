@@ -3,27 +3,28 @@ using IdleCarService.Inventory;
 
 namespace IdleCarService.Build
 {
-    public class RepairStation  : ServiceStation
+    public class RepairStation : ServiceStation
     {
         private int[] _detailIds;
         private int _totalSellPrice;
-        
-        public void CreateServiceForClient(ItemConfig[] details, Action onCompleted)
+
+        public override void CreateServiceForClient(Action onCompleted)
         {
-            OnJobCompletedCallback = onCompleted;
-            
+            base.CreateServiceForClient(onCompleted);
+
+            ItemConfig[] details = GenerateNeedDetails();
             _detailIds = new int[details.Length];
             _totalSellPrice = 0;
-    
+
             for (int i = 0; i < details.Length; i++)
             {
                 _detailIds[i] = details[i].Id;
                 _totalSellPrice += details[i].SellPrice;
             }
-            
+
             NeedItems = true;
             WaitCount = 0;
-            
+
             TryCreateJob();
         }
 
@@ -37,7 +38,7 @@ namespace IdleCarService.Build
                 if (Inventory.HasItem(itemId) == false)
                     return false;
             }
-            
+
             return true;
         }
 
@@ -45,14 +46,14 @@ namespace IdleCarService.Build
         {
             foreach (int itemId in _detailIds)
                 Inventory.RemoveItem(itemId);
-            
+
             Bank.AddMoney(_totalSellPrice);
         }
-        
+
         protected override void UpdateInfoView()
         {
             HideInfoIcon();
-            
+
             if (_detailIds == null)
                 return;
 
@@ -79,6 +80,17 @@ namespace IdleCarService.Build
                     }
                 }
             }
+        }
+
+        private ItemConfig[] GenerateNeedDetails()
+        {
+            int count = UnityEngine.Random.Range(1, 4);
+            ItemConfig[] items = new ItemConfig[count];
+
+            for (int i = 0; i < count; i++)
+                items[i] = Inventory.GetRandomUnlockedItem();
+            
+            return items;
         }
     }
 }

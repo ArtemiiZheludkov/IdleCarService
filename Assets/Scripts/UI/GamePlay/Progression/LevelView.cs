@@ -23,6 +23,10 @@ namespace IdleCarService.UI.GamePlay
 
         public void Enable()
         {
+            _valueText.text = _levelController.CurrentLevel.ToString();
+            _slider.value = _levelController.CurrentExperience;
+            _slider.maxValue = _levelController.NeedExperience;
+            
             _levelController.LevelChanged += OnLevelChanged;
             _levelController.ExperienceChanged += OnExperienceChanged;
         }

@@ -1,4 +1,5 @@
-﻿using IdleCarService.Inventory;
+﻿using IdleCarService.Core;
+using IdleCarService.Inventory;
 using IdleCarService.Progression;
 using UnityEngine;
 
@@ -17,8 +18,10 @@ namespace IdleCarService.Build
             _inventory = inventory;
         }
 
-        public bool TryBuild(BuildingConfig config)
+        public bool TryBuild(BuildingConfig config, out Building newBuilding)
         {
+            newBuilding = null;
+            
             if (_zoneManager.HasAvailableSlotInZone(config.ZoneType) == false)
                 return false;
                 
@@ -26,7 +29,7 @@ namespace IdleCarService.Build
 
             if (zone.CanPlaceBuilding(out Transform buildingSlot))
             {
-                Building newBuilding = InstantiateBuilding(config, buildingSlot);
+                newBuilding = InstantiateBuilding(config, buildingSlot);
                 
                 if (newBuilding == null)
                     return false;
@@ -51,6 +54,12 @@ namespace IdleCarService.Build
             {
                 ServiceStation station = Object.Instantiate(stationConfig.Prefab, buildingSlot);
                 station.Init(stationConfig, _inventory, _bank);
+                
+                if (GameManager.Instance.GameState == GameStateType.Game)
+                    station.StartWork();
+                else if (GameManager.Instance.GameState == GameStateType.Menu)
+                    station.StopWork();
+                
                 return station;
             }
             
@@ -58,6 +67,12 @@ namespace IdleCarService.Build
             {
                 Factory factory = Object.Instantiate(factoryConfig.Prefab, buildingSlot);
                 factory.Init(factoryConfig, _inventory, _bank);
+                
+                if (GameManager.Instance.GameState == GameStateType.Game)
+                    factory.StartWork();
+                else if (GameManager.Instance.GameState == GameStateType.Menu)
+                    factory.StopWork();
+                
                 return factory;
             }
             

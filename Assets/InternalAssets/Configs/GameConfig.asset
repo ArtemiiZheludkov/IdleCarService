@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartMoney: 1000
   StartInventoryQuantity: 10
+  ClientsConfig: {fileID: 11400000, guid: d451544ededdb38468828defdf826240, type: 2}
   ItemConfigs:
   - {fileID: 11400000, guid: 08c34a6eb15c1f145a26cebea3395f66, type: 2}
   - {fileID: 11400000, guid: cb4c634bf4e7b504e877fa3117b90a4b, type: 2}

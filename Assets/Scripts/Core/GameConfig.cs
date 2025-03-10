@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using IdleCarService.Build;
 using IdleCarService.Inventory;
+using IdleCarService.Unit;
 using UnityEngine;
 
 namespace IdleCarService.Core
@@ -10,6 +11,8 @@ namespace IdleCarService.Core
     {
         public int StartMoney;
         public int StartInventoryQuantity;
+        
+        public ClientsConfig ClientsConfig;
         
         public List<ItemConfig> ItemConfigs;
         public List<BuildingConfig> BuildingConfigs;

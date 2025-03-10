@@ -1,9 +1,10 @@
 ﻿using IdleCarService.Build;
 using IdleCarService.Craft;
-using IdleCarService.Game.Camera;
+using IdleCarService.Camera;
 using IdleCarService.Inventory;
 using IdleCarService.Progression;
 using IdleCarService.UI;
+using IdleCarService.Unit;
 using UnityEngine;
 
 namespace IdleCarService.Core
@@ -11,6 +12,8 @@ namespace IdleCarService.Core
     public class GameManager : MonoBehaviour
     {
         public static GameManager Instance { get; private set; }
+        
+        public GameStateType GameState { get; private set; }
         
         public LevelController LevelController { get; private set; }
         public MoneyBank MoneyBank { get; private set; }
@@ -22,6 +25,7 @@ namespace IdleCarService.Core
         [SerializeField] private CameraController _camera;
         [SerializeField] private UIManager _uiManager;
         [SerializeField] private BuildingZoneManager _buildingZoneManager;
+        [SerializeField] private ClientManager[] _clientManagers;
 
         private void Awake()
         {
@@ -30,7 +34,10 @@ namespace IdleCarService.Core
             else
                 Destroy(gameObject);
 
+            GameState = GameStateType.Load;
+            
             Init();
+            //Load save
             SetMenuState();
         }
 
@@ -46,18 +53,33 @@ namespace IdleCarService.Core
             
             _uiManager.Init(Instance);
             _camera.Init();
+
+            foreach (ClientManager manager in _clientManagers)
+                manager.Init(_config.ClientsConfig);
         }
 
         public void SetMenuState()
         {
+            GameState = GameStateType.Menu;
+            
             _uiManager.SetMenuUI();
             _camera.SetMenuCamera();
+            BuildingManager.SetMenuState();
+            
+            foreach (ClientManager manager in _clientManagers)
+                manager.ToggleSpawning(false);
         }
 
         public void SetGamePlayState()
         {
+            GameState = GameStateType.Game;
+            
             _uiManager.SetGamePlayUI();
             _camera.SetGamePlayCamera();
+            BuildingManager.SetGamePlayState();
+            
+            foreach (ClientManager manager in _clientManagers)
+                manager.ToggleSpawning(true);
         }
 
         private void Update()

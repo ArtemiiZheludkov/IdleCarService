@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace IdleCarService.Game.Camera
+namespace IdleCarService.Camera
 {
     public class CameraMover : MonoBehaviour
     {

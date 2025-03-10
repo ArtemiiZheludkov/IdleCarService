@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using IdleCarService.Core;
 using IdleCarService.Progression;
+using Random = UnityEngine.Random;
 
 namespace IdleCarService.Inventory
 {
@@ -34,7 +35,18 @@ namespace IdleCarService.Inventory
 
         public int GetItemQuantity(int itemId) => _items.ContainsKey(itemId) ? _items[itemId] : 0;
 
-        public int GetRandomItemId() => _availableItems[UnityEngine.Random.Range(0, _availableItems.Count)].Id;
+        public ItemConfig GetRandomUnlockedItem()
+        {
+            for (int i = 0; i < _availableItems.Count; i++)
+            {
+                ItemConfig config = _availableItems[Random.Range(0, _availableItems.Count)];
+                
+                if (config.UnlockLevel >= _level.CurrentLevel)
+                    return config;
+            }
+            
+            return null;
+        }
 
         public void AddItemQuantity(int quantity)
         {

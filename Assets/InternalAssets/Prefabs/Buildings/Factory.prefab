@@ -209,6 +209,7 @@ MonoBehaviour:
   _jobIcon: {fileID: 4677311131779569484}
   _infoIcon: {fileID: 6480451592468255759}
   _moneySprite: {fileID: -4592095305834777055, guid: a5e15db1384d7b54a9485ae4b9c22cef, type: 3}
+  _inventorySprite: {fileID: -6009198046271197863, guid: 416d7ad4879a2ec4c99603e9260521e1, type: 3}
   _itemIcon: {fileID: 6426609995428329267}
 --- !u!1 &3041939375541241214
 GameObject:
@@ -648,7 +649,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -99.99999, y: -100}
+  m_SizeDelta: {x: -150, y: -150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2209823823799660481
 CanvasRenderer:
@@ -678,7 +679,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -4592095305834777055, guid: a5e15db1384d7b54a9485ae4b9c22cef, type: 3}
+  m_Sprite: {fileID: -6009198046271197863, guid: 416d7ad4879a2ec4c99603e9260521e1, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1

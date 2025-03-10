@@ -10,8 +10,11 @@ namespace IdleCarService.UI.GamePlay
         [SerializeField] private Image _icon;
         [SerializeField] private TMP_Text _countTxt;
 
+        private int _itemId;
+
         public void Init(ItemConfig config, InventoryManager inventory)
         {
+            _itemId = config.Id;
             _icon.sprite = config.Icon;
             _countTxt.text = inventory.GetItemQuantity(config.Id).ToString();
             inventory.OnItemQuantityChanged += OnItemQuantityChanged;
@@ -19,7 +22,8 @@ namespace IdleCarService.UI.GamePlay
 
         private void OnItemQuantityChanged(int id, int count)
         {
-            _countTxt.text = count.ToString();
+            if (_itemId == id)
+                _countTxt.text = count.ToString();
         }
     }
 }
