@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c42afe9f5ed4f80b7d5a2617dbb6efb, type: 3}
   m_Name: GameConfig
   m_EditorClassIdentifier: 
-  StartMoney: 100
+  StartMoney: 1000
   StartInventoryQuantity: 10
   ItemConfigs:
   - {fileID: 11400000, guid: 08c34a6eb15c1f145a26cebea3395f66, type: 2}

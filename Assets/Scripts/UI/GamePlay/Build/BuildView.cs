@@ -19,7 +19,7 @@ namespace IdleCarService.UI.GamePlay
             _bank = bank;
             base.Init(levelController);
         }
-
+        
         protected override void CreateViews()
         {
             if (_buildingViews == null)

@@ -21,6 +21,7 @@ namespace IdleCarService.Core
         [SerializeField] private GameConfig _config;
         [SerializeField] private CameraShaker _cameraShaker;
         [SerializeField] private UIManager _uiManager;
+        [SerializeField] private BuildingZoneManager _buildingZoneManager;
 
         private void Awake()
         {
@@ -37,9 +38,11 @@ namespace IdleCarService.Core
         {
             LevelController = new LevelController();
             MoneyBank = new MoneyBank(_config.StartMoney);
-            BuildingManager = new BuildingManager(_config.BuildingConfigs, LevelController, MoneyBank);
             InventoryManager = new InventoryManager(_config.ItemConfigs, _config.StartInventoryQuantity, LevelController);
             CraftManager = new CraftManager(InventoryManager);
+            
+            BuildingManager = new BuildingManager(_config.BuildingConfigs, _buildingZoneManager, 
+                LevelController, MoneyBank, InventoryManager);
             
             _uiManager.Init(Instance);
         }
@@ -54,6 +57,14 @@ namespace IdleCarService.Core
         {
             _uiManager.SetGamePlayUI();
             _cameraShaker.StopShaking();
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+               LevelController.AddExperience(50);
+            }
         }
 
         public void CloseGame()

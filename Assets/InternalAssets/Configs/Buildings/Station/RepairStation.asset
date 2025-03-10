@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 21769
   Icon: {fileID: -707816793393910010, guid: 4851d0a9a81927a478fa6af654948fd8, type: 3}
+  ZoneType: 2
   UnlockLevel: 1
   BuildPrice: 100
   Prefab: {fileID: 5501611261174539997, guid: 975eebae51395774aaf23e485e6f9304, type: 3}

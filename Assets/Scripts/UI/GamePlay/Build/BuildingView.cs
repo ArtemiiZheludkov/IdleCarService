@@ -17,9 +17,14 @@ namespace IdleCarService.UI.GamePlay
         private BuildingManager _builder;
         private MoneyBank _bank;
         private Action _closeBuildView;
+
+        private bool _initialized = false;
         
         private void OnEnable()
         {
+            if (_initialized == false)
+                return;
+            
             UpdateBuildButton();
             
             _buildButton.onClick.AddListener(OnBuildClicked);
@@ -28,6 +33,9 @@ namespace IdleCarService.UI.GamePlay
 
         private void OnDisable()
         {
+            if (_initialized == false)
+                return;
+            
             UpdateBuildButton();
             
             _buildButton.onClick.RemoveListener(OnBuildClicked);
@@ -43,7 +51,10 @@ namespace IdleCarService.UI.GamePlay
             
             _icon.sprite = config.Icon;
             _priceTxt.text = config.BuildPrice.ToString();
-            UpdateBuildButton();
+            _initialized = true;
+
+            if (gameObject.activeInHierarchy) 
+                OnEnable();
         }
         
         private void UpdateBuildButton() => _buildButton.interactable = _builder != null && _builder.CanBuild(_config.Id);

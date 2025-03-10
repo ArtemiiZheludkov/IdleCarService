@@ -6,6 +6,7 @@ namespace IdleCarService.Build
     {
         public int Id;
         public Sprite Icon;
+        public BuildingZoneType ZoneType;
         
         public int UnlockLevel;
         public int BuildPrice;

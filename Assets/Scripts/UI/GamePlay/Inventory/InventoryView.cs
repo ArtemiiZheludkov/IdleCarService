@@ -51,6 +51,7 @@ namespace IdleCarService.UI.GamePlay
         {
             ItemView itemView = Instantiate(_prefabItemView, _contentParent);
             itemView.Init(config, _inventory);
+            
             _itemViews.Add(config.Id, itemView);
         }
         

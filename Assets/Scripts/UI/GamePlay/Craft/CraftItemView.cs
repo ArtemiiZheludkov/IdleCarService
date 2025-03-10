@@ -16,9 +16,14 @@ namespace IdleCarService.UI.GamePlay
         private ItemConfig _config;
         private CraftManager _crafter;
         private InventoryManager _inventory;
+        
+        private bool _initialized = false;
 
         private void OnEnable()
         {
+            if (_initialized == false)
+                return;
+            
             UpdateCraftButton();
             
             _craftButton.onClick.AddListener(OnCraftClicked);
@@ -28,6 +33,9 @@ namespace IdleCarService.UI.GamePlay
 
         private void OnDisable()
         {
+            if (_initialized == false)
+                return;
+            
             UpdateCraftButton();
             
             _craftButton.onClick.RemoveListener(OnCraftClicked);
@@ -42,9 +50,11 @@ namespace IdleCarService.UI.GamePlay
             _inventory = inventory;
             
             _mainIcon.sprite = config.Icon;
-            
-            UpdateCraftButton();
             CreateViews(config);
+            _initialized = true;
+
+            if (gameObject.activeInHierarchy) 
+                OnEnable();
         }
         
         private void CreateViews(ItemConfig config)
