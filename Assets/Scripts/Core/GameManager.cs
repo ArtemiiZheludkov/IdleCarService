@@ -1,9 +1,9 @@
 ﻿using IdleCarService.Build;
 using IdleCarService.Craft;
+using IdleCarService.Game.Camera;
 using IdleCarService.Inventory;
 using IdleCarService.Progression;
 using IdleCarService.UI;
-using IdleCarService.Utils;
 using UnityEngine;
 
 namespace IdleCarService.Core
@@ -19,7 +19,7 @@ namespace IdleCarService.Core
         public CraftManager CraftManager { get; private set; }
 
         [SerializeField] private GameConfig _config;
-        [SerializeField] private CameraShaker _cameraShaker;
+        [SerializeField] private CameraController _camera;
         [SerializeField] private UIManager _uiManager;
         [SerializeField] private BuildingZoneManager _buildingZoneManager;
 
@@ -45,18 +45,19 @@ namespace IdleCarService.Core
                 LevelController, MoneyBank, InventoryManager);
             
             _uiManager.Init(Instance);
+            _camera.Init();
         }
 
         public void SetMenuState()
         {
             _uiManager.SetMenuUI();
-            _cameraShaker.StartShaking();
+            _camera.SetMenuCamera();
         }
 
         public void SetGamePlayState()
         {
             _uiManager.SetGamePlayUI();
-            _cameraShaker.StopShaking();
+            _camera.SetGamePlayCamera();
         }
 
         private void Update()

@@ -1,18 +1,17 @@
 ﻿using UnityEngine;
 
-namespace IdleCarService.Utils
+namespace IdleCarService.Game.Camera
 {
     public class CameraShaker : MonoBehaviour
     {
         [SerializeField] private float _shakeAmount = 0.1f;
         [SerializeField] private float _shakeFrequency = 1f;
 
-        private Vector3 originalPosition;
+        private Vector3 _originalPosition;
 
         private void Awake()
         {
-            originalPosition = transform.position;
-            StartShaking();
+            _originalPosition = transform.position;
         }
 
         private void Update()
@@ -20,7 +19,7 @@ namespace IdleCarService.Utils
             float shakeX = Mathf.PerlinNoise(Time.time * _shakeFrequency, 0f) * _shakeAmount - (_shakeAmount / 2);
             float shakeY = Mathf.PerlinNoise(0f, Time.time * _shakeFrequency) * _shakeAmount - (_shakeAmount / 2);
 
-            transform.position = originalPosition + new Vector3(shakeX, shakeY, 0f);
+            transform.position = _originalPosition + new Vector3(shakeX, shakeY, 0f);
         }
 
         public void StartShaking()
@@ -31,7 +30,7 @@ namespace IdleCarService.Utils
         public void StopShaking()
         {
             enabled = false;
-            transform.position = originalPosition;
+            transform.position = _originalPosition;
         }
     }
 }
