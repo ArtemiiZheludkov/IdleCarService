@@ -1,9 +1,10 @@
-Car service - Idle game (test for work)
-Idea:
-A game about car service.
-Build car service stations - Customers arrive - Repair customers with parts - Parts
-are made at the factory - Build factories - Parts are stored in the warehouse - Complex parts
+Car Service - Idle Game (Test for Work)
+
+Idea: A game about car service.
+
+We build car repair shops - Clients arrive - We repair clients with parts - Parts
+are made at the factory - We build factories - Parts are stored in the warehouse - Complex parts
 are created by crafting from parts from the factory - Level progress opens new factories,
-construction zones, larger warehouse, more car service stations
-Build gas stations - Customers arrive - Refuel with fuel - Fuel is made
+construction zones, larger warehouses, more car repair shops
+We build gas stations - Clients arrive - They refuel - Fuel is made
 at the factory - Fuel is stored in the warehouse
