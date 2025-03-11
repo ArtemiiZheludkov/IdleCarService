@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using IdleCarService.Core;
 using IdleCarService.Progression;
 using IdleCarService.Utils;
 using Random = UnityEngine.Random;
@@ -42,7 +41,7 @@ namespace IdleCarService.Inventory
             {
                 ItemConfig config = _availableItems[Random.Range(0, _availableItems.Count)];
                 
-                if (config.UnlockLevel >= _level.CurrentLevel)
+                if (_level.CurrentLevel >= config.UnlockLevel)
                     return config;
             }
             

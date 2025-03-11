@@ -9,11 +9,6 @@ namespace IdleCarService.Utils
 
         private Vector3 _originalPosition;
 
-        private void Awake()
-        {
-            _originalPosition = transform.position;
-        }
-
         private void Update()
         {
             float shakeX = Mathf.PerlinNoise(Time.time * _shakeFrequency, 0f) * _shakeAmount - (_shakeAmount / 2);
@@ -22,8 +17,9 @@ namespace IdleCarService.Utils
             transform.position = _originalPosition + new Vector3(shakeX, shakeY, 0f);
         }
 
-        public void StartShaking()
+        public void StartShaking(Vector3 originalPosition)
         {
+            _originalPosition = originalPosition;
             enabled = true;
         }
 

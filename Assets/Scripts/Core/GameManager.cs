@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using IdleCarService.Build;
+﻿using IdleCarService.Build;
 using IdleCarService.Craft;
 using IdleCarService.Utils;
 using IdleCarService.Inventory;
@@ -76,7 +75,7 @@ namespace IdleCarService.Core
             _camera.SetMenuCamera();
             BuildingManager.SetMenuState();
             
-            _mainRoad.ToggleSpawning(false);
+            _mainRoad.ToggleSpawning(true);
             
             foreach (ClientManager manager in _otherRoad)
                 manager.ToggleSpawning(false);
@@ -90,7 +89,7 @@ namespace IdleCarService.Core
             _camera.SetGamePlayCamera();
             BuildingManager.SetGamePlayState();
             
-            _mainRoad.ToggleSpawning(true);
+            //_mainRoad.ToggleSpawning(true);
             
             foreach (ClientManager manager in _otherRoad)
                 manager.ToggleSpawning(true);
