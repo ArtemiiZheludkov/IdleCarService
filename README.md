@@ -2,6 +2,8 @@ Car Service - Idle Game (Test for Work)
 
 Idea: A game about car service.
 
+Video Gameplay: https://www.youtube.com/shorts/jmXq6JAQVRI
+
 We build car repair shops - Clients arrive - We repair clients with parts - Parts
 are made at the factory - We build factories - Parts are stored in the warehouse - Complex parts
 are created by crafting from parts from the factory - Level progress opens new factories,
