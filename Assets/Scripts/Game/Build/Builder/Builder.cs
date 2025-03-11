@@ -9,12 +9,14 @@ namespace IdleCarService.Build
     {
         private BuildingZoneManager _zoneManager;
         private MoneyBank _bank;
+        private LevelController _level;
         private InventoryManager _inventory;
 
-        public Builder(BuildingZoneManager zoneManager, MoneyBank bank, InventoryManager inventory)
+        public Builder(BuildingZoneManager zoneManager, MoneyBank bank, LevelController level, InventoryManager inventory)
         {
             _zoneManager = zoneManager;
             _bank = bank;
+            _level = level;
             _inventory = inventory;
         }
 
@@ -53,7 +55,7 @@ namespace IdleCarService.Build
             if (config is StationConfig stationConfig)
             {
                 ServiceStation station = Object.Instantiate(stationConfig.Prefab, buildingSlot);
-                station.Init(stationConfig, _inventory, _bank);
+                station.Init(stationConfig, _inventory, _bank, _level);
                 
                 if (GameManager.Instance.GameState == GameStateType.Game)
                     station.StartWork();

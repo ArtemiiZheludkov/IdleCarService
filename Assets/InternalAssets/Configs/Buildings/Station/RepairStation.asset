@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: RepairStation
   m_EditorClassIdentifier: 
   Id: 21769
-  Icon: {fileID: -707816793393910010, guid: 4851d0a9a81927a478fa6af654948fd8, type: 3}
+  Icon: {fileID: 21300000, guid: 3e29b0a04c1142c4aaf6c12f287c2abf, type: 3}
   ZoneType: 2
-  UnlockLevel: 1
-  BuildPrice: 100
+  UnlockLevel: 2
+  BuildPrice: 300
   Prefab: {fileID: 5501611261174539997, guid: 975eebae51395774aaf23e485e6f9304, type: 3}
   JobTime: 5
+  JobExperience: 35

@@ -56,7 +56,7 @@ namespace IdleCarService.Unit
             }
             else
             {
-                client = Instantiate(_config.Prefabs[Random.Range(0, _config.Prefabs.Length)], _spawnPoint);
+                client = Instantiate(_config.Prefabs[Random.Range(0, _config.Prefabs.Length)], transform);
                 client.Init(Random.Range(_config.MinSpeed, _config.MaxSpeed), _config.RotateSpeed);
             }
 
@@ -69,7 +69,7 @@ namespace IdleCarService.Unit
         {
             for (int i = 0; i < _config.Prefabs.Length; i++)
             {
-                Client client = Instantiate(_config.Prefabs[i]);
+                Client client = Instantiate(_config.Prefabs[i], transform);
                 client.gameObject.SetActive(false);
                 client.Init(Random.Range(_config.MinSpeed, _config.MaxSpeed), _config.RotateSpeed);
                 _clientPool.Enqueue(client);

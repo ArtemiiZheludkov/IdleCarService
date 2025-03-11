@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Factory_detail_1
   m_EditorClassIdentifier: 
   Id: 790440
-  Icon: {fileID: 5293557560351110567, guid: 3580e3b3da4859240ac7a3e3c6cedc81, type: 3}
+  Icon: {fileID: 21300000, guid: 0d58c76d6f4a71b46a8574447444598f, type: 3}
   ZoneType: 3
-  UnlockLevel: 1
-  BuildPrice: 100
+  UnlockLevel: 2
+  BuildPrice: 300
   Prefab: {fileID: 2143096869053689069, guid: ee3a50cd7a8fea9479254c694a191b2e, type: 3}
   FactoryItem: {fileID: 11400000, guid: 08c34a6eb15c1f145a26cebea3395f66, type: 2}
-  FactoryPrice: 10
-  JobTime: 2
+  FactoryPrice: 30
+  JobTime: 15

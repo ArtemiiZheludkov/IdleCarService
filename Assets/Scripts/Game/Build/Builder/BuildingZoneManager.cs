@@ -18,7 +18,14 @@ namespace IdleCarService.Build
         public bool HasAvailableSlotInZone(BuildingZoneType zoneType) => GetZoneByType(zoneType)?.AvailableSlots > 0;
         
         public void ExpandZone(BuildingZoneType zoneType, int slotsToAdd) => GetZoneByType(zoneType)?.ExpandZone(Vector3.back, slotsToAdd);
-        
+
+        public void RebuildZones(int slots)
+        {
+            _warehouseZone?.RebuildZone(Vector3.back, slots);
+            _stationZone?.RebuildZone(Vector3.back, slots);
+            _factoryZone?.RebuildZone(Vector3.back, slots);
+        }
+
         public BuildingZone GetZoneByType(BuildingZoneType zoneType)
         {
             switch (zoneType)

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f9f636286c64cd9ba86ed50e36a7fe2, type: 3}
+  m_Name: Detail_7
+  m_EditorClassIdentifier: 
+  Id: 340724
+  Icon: {fileID: 21300000, guid: 0294446e21fa871488b449bbd40852db, type: 3}
+  UnlockLevel: 7
+  SellPrice: 700
+  IsCraftable: 1
+  CraftingIngredients:
+  - {fileID: 11400000, guid: 08c34a6eb15c1f145a26cebea3395f66, type: 2}
+  - {fileID: 11400000, guid: cb4c634bf4e7b504e877fa3117b90a4b, type: 2}
+  - {fileID: 11400000, guid: ae9a697bb874bdf4baa275566bff7710, type: 2}
+  - {fileID: 11400000, guid: 7c97df44cd1b57f48b31dcea04e5895a, type: 2}

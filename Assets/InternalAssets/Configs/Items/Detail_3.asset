@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Detail_3
   m_EditorClassIdentifier: 
   Id: 702653
-  Icon: {fileID: 5659230168238626165, guid: b6bf64f3818ea7048adcf794dea42649, type: 3}
-  UnlockLevel: 2
-  FactoryPrice: 5
+  Icon: {fileID: 21300000, guid: 648ed802dba82d8428e9940f7377a7c1, type: 3}
+  UnlockLevel: 5
+  SellPrice: 200
+  IsCraftable: 0
+  CraftingIngredients: []

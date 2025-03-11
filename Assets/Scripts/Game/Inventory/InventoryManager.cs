@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using IdleCarService.Core;
 using IdleCarService.Progression;
+using IdleCarService.Utils;
 using Random = UnityEngine.Random;
 
 namespace IdleCarService.Inventory
@@ -82,8 +83,11 @@ namespace IdleCarService.Inventory
             _items[itemId] -= quantity;
             CurrentItemQuantity -= quantity;
 
-            if (_items[itemId] <= 0)
+            if (_items[itemId] < 0)
                 _items[itemId] = 0;
+
+            if (CurrentItemQuantity < 0)
+                CurrentItemQuantity = 0;
             
             OnItemQuantityChanged?.Invoke(itemId, _items[itemId]);
             OnInventoryHasQuantity?.Invoke(CurrentItemQuantity < MaxItemQuantity);
@@ -122,20 +126,40 @@ namespace IdleCarService.Inventory
             return unlockedItems;
         }
 
-        public void LoadFromData(Dictionary<int, int> savedData, int maxItemQuantity)
+        public InventoryItemData[] GetSaveData()
         {
-            //_items.Clear();
-            
-            MaxItemQuantity = maxItemQuantity;
+            InventoryItemData[] inventoryArray = new InventoryItemData[_items.Count];
+            int[] keys = new int[_items.Count];
+            _items.Keys.CopyTo(keys, 0);
 
-            foreach (var pair in savedData)
+            for (int i = 0; i < keys.Length; i++)
             {
-                _items[pair.Key] = pair.Value;
-                CurrentItemQuantity += pair.Value;
-                OnItemQuantityChanged?.Invoke(pair.Key, pair.Value);
+                int key = keys[i];
+                inventoryArray[i] = new InventoryItemData { Id = key, Quantity = _items[key] };
             }
-            
+
+            return inventoryArray;
+        }
+
+        public void LoadData(InventoryItemData[] inventoryData)
+        {
+            for (int i = 0; i < inventoryData.Length; i++)
+            {
+                InventoryItemData item = inventoryData[i];
+                _items[item.Id] = item.Quantity;
+                OnItemQuantityChanged?.Invoke(item.Id, item.Quantity);
+            }
+
+            UpdateCurrentItemQuantity();
             OnInventoryHasQuantity?.Invoke(CurrentItemQuantity < MaxItemQuantity);
+        }
+
+        private void UpdateCurrentItemQuantity()
+        {
+            CurrentItemQuantity = 0;
+            
+            foreach (int quantity in _items.Values)
+                CurrentItemQuantity += quantity;
         }
     }
 }

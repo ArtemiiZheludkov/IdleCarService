@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using IdleCarService.Core;
 using IdleCarService.Inventory;
 using IdleCarService.Progression;
 
@@ -23,7 +22,7 @@ namespace IdleCarService.Build
             _bank = bank;
 
             zoneManager.Init();
-            _builder = new Builder(zoneManager, bank, inventory);
+            _builder = new Builder(zoneManager, bank, level, inventory);
             _buildingConfigs = new Dictionary<int, BuildingConfig>();
             _buildingsCreated = new List<Building>();
             
@@ -103,6 +102,28 @@ namespace IdleCarService.Build
             }
 
             return unlockedBuildings;
+        }
+
+        public int[] GetSaveData()
+        {
+            int[] data = new int[_buildingsCreated.Count];
+            
+            for (int i = 0; i < _buildingsCreated.Count; i++)
+                data[i] = _buildingsCreated[i].Id;
+            
+            return data;
+        }
+
+        public void LoadData(int level, int[] data)
+        {
+            _zoneManager.RebuildZones(level);
+
+            foreach (int buildId in data)
+            {
+                if (_buildingConfigs.TryGetValue(buildId, out BuildingConfig config))
+                    if (_builder.TryBuild(config, out Building building))
+                        _buildingsCreated.Add(building);
+            }
         }
 
         private void OnLevelChanged(int level)

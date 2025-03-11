@@ -12,18 +12,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c42afe9f5ed4f80b7d5a2617dbb6efb, type: 3}
   m_Name: GameConfig
   m_EditorClassIdentifier: 
-  StartMoney: 1000
-  StartInventoryQuantity: 10
-  ClientsConfig: {fileID: 11400000, guid: d451544ededdb38468828defdf826240, type: 2}
+  BaseExperienceRequired: 100
+  ExperienceMultiplier: 1.8
+  MaxLevel: 8
+  StartMoney: 500
+  StartInventoryQuantity: 20
+  StartItem: {fileID: 11400000, guid: 29022c509b22f2242a137f883bccc20f, type: 2}
+  StartItemQuantity: 5
+  StartBuild: {fileID: 11400000, guid: c82c754266a63bf4dbbc07f365a53d90, type: 2}
+  MainClientsConfig: {fileID: 11400000, guid: d451544ededdb38468828defdf826240, type: 2}
+  OtherClientsConfig: {fileID: 11400000, guid: 1a6ebb994eb4dae468d0de1920410133, type: 2}
   ItemConfigs:
+  - {fileID: 11400000, guid: 29022c509b22f2242a137f883bccc20f, type: 2}
   - {fileID: 11400000, guid: 08c34a6eb15c1f145a26cebea3395f66, type: 2}
   - {fileID: 11400000, guid: cb4c634bf4e7b504e877fa3117b90a4b, type: 2}
   - {fileID: 11400000, guid: ae9a697bb874bdf4baa275566bff7710, type: 2}
   - {fileID: 11400000, guid: 7c97df44cd1b57f48b31dcea04e5895a, type: 2}
+  - {fileID: 11400000, guid: 5f931b7fdf32ec24db43a9f6e755c581, type: 2}
+  - {fileID: 11400000, guid: 5e671f9ce7eb4354dbe8941e05762355, type: 2}
+  - {fileID: 11400000, guid: 22618b653cf585b43b236f58d7a7dcbb, type: 2}
   BuildingConfigs:
   - {fileID: 11400000, guid: c82c754266a63bf4dbbc07f365a53d90, type: 2}
   - {fileID: 11400000, guid: 1b8432e5aba4d0d48b92b593f5c6d422, type: 2}
   - {fileID: 11400000, guid: 3e974274df7c54e4da40dddd05cde428, type: 2}
+  - {fileID: 11400000, guid: f2649ef2cc843ea448a0251237af8e00, type: 2}
   - {fileID: 11400000, guid: 9c2fa5c63b1cd21478af662fefaaae61, type: 2}
   - {fileID: 11400000, guid: bc186d2b5d0f16a43b42df48c286a244, type: 2}
   - {fileID: 11400000, guid: bb174362778a1774cbdb28448a11f25e, type: 2}

@@ -7,5 +7,6 @@ namespace IdleCarService.Build
     {
         public ServiceStation Prefab;
         public int JobTime;
+        public int JobExperience;
     }
 }

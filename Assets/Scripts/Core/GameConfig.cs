@@ -9,10 +9,20 @@ namespace IdleCarService.Core
     [CreateAssetMenu(fileName = "NewGameConfig", menuName = "Configs/GameConfig")]
     public class GameConfig : ScriptableObject
     {
+        public int BaseExperienceRequired;
+        public float ExperienceMultiplier;
+        public int MaxLevel;
+        
         public int StartMoney;
         public int StartInventoryQuantity;
+
+        public ItemConfig StartItem;
+        public int StartItemQuantity;
         
-        public ClientsConfig ClientsConfig;
+        public BuildingConfig StartBuild;
+        
+        public ClientsConfig MainClientsConfig;
+        public ClientsConfig OtherClientsConfig;
         
         public List<ItemConfig> ItemConfigs;
         public List<BuildingConfig> BuildingConfigs;

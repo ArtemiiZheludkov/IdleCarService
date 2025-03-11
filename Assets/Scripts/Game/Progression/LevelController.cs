@@ -60,36 +60,15 @@ namespace IdleCarService.Progression
                 LevelChanged?.Invoke(CurrentLevel);
             }
         }
-        
-        public void SetLevel(int level)
+
+        public void LoadData(int level, int experience)
         {
-            if (level <= 0 || level > _maxLevel)
-                return;
-            
             CurrentLevel = level;
-            CurrentExperience = 0;
+            CurrentExperience = experience;
             NeedExperience = CalculateRequiredExperience(CurrentLevel);
             
             LevelChanged?.Invoke(CurrentLevel);
             ExperienceChanged?.Invoke(CurrentExperience);
-        }
-        
-        public float GetLevelProgress()
-        {
-            if (CurrentLevel >= _maxLevel)
-                return 1f;
-            
-            return (float)CurrentExperience / NeedExperience;
-        }
-        
-        public int GetExperienceToNextLevel()
-        {
-            return NeedExperience - CurrentExperience;
-        }
-        
-        public void ResetProgression(int level = 1)
-        {
-            SetLevel(level);
         }
     }
 }

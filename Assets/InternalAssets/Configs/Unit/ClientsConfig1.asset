@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 648aa58a1efa4aff96637a6326b3174b, type: 3}
+  m_Name: ClientsConfig1
+  m_EditorClassIdentifier: 
+  StartPool: 5
+  SpawnInterval: 5
+  MaxClientsOnRoad: 3
+  MinSpeed: 9
+  MaxSpeed: 10
+  RotateSpeed: 5
+  Prefabs:
+  - {fileID: 6361383627840894680, guid: 9a1c5dc07de7f724a95ba81fc4fff46b, type: 3}
+  - {fileID: 6361383627840894680, guid: 8c738dac62affcd4eaa5ddc2960b433e, type: 3}
+  - {fileID: 6361383627840894680, guid: 653a1ffb645b1944985deea974a91701, type: 3}
+  - {fileID: 6361383627840894680, guid: 3836bafc8b8364e4db633032112562fb, type: 3}
+  - {fileID: 6361383627840894680, guid: 6fd7a46a8d930f0428fcdfd5fb40e8df, type: 3}
+  - {fileID: 6361383627840894680, guid: 35fda25d6bb66b242a27e7025222ac6a, type: 3}
+  - {fileID: 6361383627840894680, guid: ac74f3bc767533843813d65882cb5911, type: 3}
+  - {fileID: 6361383627840894680, guid: be1a76a3d97dab44db346c705ab2981d, type: 3}
+  - {fileID: 6361383627840894680, guid: 1a23ad4f08cf62940aa9817a387a1a9f, type: 3}

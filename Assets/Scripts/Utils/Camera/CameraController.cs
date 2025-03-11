@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace IdleCarService.Camera
+namespace IdleCarService.Utils
 {
     [RequireComponent(typeof(CameraShaker))]
     [RequireComponent(typeof(CameraMover))]

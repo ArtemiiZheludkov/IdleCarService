@@ -32,21 +32,7 @@ namespace IdleCarService.Progression
             return true;
         }
         
-        public void ForceSpendMoney(int amount)
-        {
-            if (amount < 0)
-                return;
-
-            Money -= amount;
-            MoneyChanged?.Invoke(Money);
-        }
-        
-        public bool HasEnoughMoney(int amount)
-        {
-            return Money >= amount;
-        }
-        
-        public void ResetMoney(int newAmount = 0)
+        public void LoadData(int newAmount)
         {
             Money = newAmount;
             MoneyChanged?.Invoke(Money);

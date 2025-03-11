@@ -21,16 +21,19 @@ namespace IdleCarService.Build
         protected bool NeedItems;
         protected int WaitCount;
         
-        private int _myJobTime;
+        private LevelController _level;
+        private int _myJobTime, _jobExperience;
         private Action _onJobCompleted;
 
-        public void Init(StationConfig config, InventoryManager inventory, MoneyBank bank)
+        public void Init(StationConfig config, InventoryManager inventory, MoneyBank bank, LevelController level)
         {
             base.Init(config);
             
             Inventory = inventory;
             Bank = bank;
+            _level = level;
             _myJobTime = config.JobTime;
+            _jobExperience = config.JobExperience;
             
             NeedItems = false;
             WaitCount = 0;
@@ -47,8 +50,12 @@ namespace IdleCarService.Build
 
             NeedItems = false;
             WaitCount = 0;
-            
             HasClient = false;
+            
+            HideTimerView();
+            UpdateInfoView();
+            
+            _level.AddExperience(_jobExperience);
             _onJobCompleted?.Invoke();
         }
 
@@ -87,7 +94,7 @@ namespace IdleCarService.Build
                 ProcessItems();
                 SetJob(_myJobTime);
                 ShowTimerView();
-                Debug.Log("show");
+                UpdateInfoView();
             }
             else
             {

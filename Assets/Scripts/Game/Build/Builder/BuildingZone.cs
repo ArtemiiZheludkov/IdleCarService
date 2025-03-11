@@ -154,5 +154,33 @@ namespace IdleCarService.Build
 
             UpdateZoneOutline();
         }
+
+        public void RebuildZone(Vector3 direction, int targetSlotCount)
+        {
+            int currentSlotCount = _buildingSlots.Count;
+            
+            if (targetSlotCount > currentSlotCount)
+            {
+                int slotsToAdd = targetSlotCount - currentSlotCount;
+                ExpandZone(direction, slotsToAdd);
+            }
+            else if (targetSlotCount < currentSlotCount)
+            {
+                int slotsToRemove = currentSlotCount - targetSlotCount;
+                RemoveSlots(slotsToRemove);
+            }
+
+            UpdateZoneOutline();
+        }
+        
+        private void RemoveSlots(int slotsToRemove)
+        {
+            for (int i = 0; i < slotsToRemove; i++)
+            {
+                Transform slotToRemove = _buildingSlots[^1];
+                _buildingSlots.RemoveAt(_buildingSlots.Count - 1);
+                Destroy(slotToRemove.gameObject);
+            }
+        }
     }
 }
