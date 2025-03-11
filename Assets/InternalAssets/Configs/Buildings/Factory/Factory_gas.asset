@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c537c2f72ee345bfb74d53248bf1f73a, type: 3}
+  m_Name: Factory_gas
+  m_EditorClassIdentifier: 
+  Id: 169396
+  Icon: {fileID: -5746951479812568267, guid: 8b75ff1a4e6dd3b4d97bd28dc17ff4b9, type: 3}
+  ZoneType: 3
+  UnlockLevel: 1
+  BuildPrice: 250
+  Prefab: {fileID: 2143096869053689069, guid: ee3a50cd7a8fea9479254c694a191b2e, type: 3}
+  FactoryItem: {fileID: 11400000, guid: 29022c509b22f2242a137f883bccc20f, type: 2}
+  FactoryPrice: 40
+  JobTime: 10
