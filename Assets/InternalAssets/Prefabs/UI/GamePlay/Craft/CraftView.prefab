@@ -685,9 +685,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecc77c9ab0274793a060054a682512d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefabItemView: {fileID: 939422543376738241, guid: 2cc2e35fc01b289439762fd5eb313893, type: 3}
   _contentParent: {fileID: 4614975589150262557}
   _closeButton: {fileID: 8397721351548134044}
+  _prefabItemView: {fileID: 939422543376738241, guid: 2cc2e35fc01b289439762fd5eb313893, type: 3}
 --- !u!1 &8586598757204820817
 GameObject:
   m_ObjectHideFlags: 0
@@ -781,8 +781,8 @@ MonoBehaviour:
   m_Horizontal: 0
   m_Vertical: 1
   m_MovementType: 1
-  m_Elasticity: 0.1
-  m_Inertia: 1
+  m_Elasticity: 5
+  m_Inertia: 0
   m_DecelerationRate: 0.135
   m_ScrollSensitivity: 1
   m_Viewport: {fileID: 3745814707279762447}
